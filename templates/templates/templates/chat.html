@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Ask the AI assistant{% endblock %}
+{% block content %}
+<section class="chat-page">
+  <div class="chat-intro"><div class="eyebrow"><span class="pulse"></span> CAMPUSMATE AI</div><h1>Your college,<br><span>explained simply.</span></h1><p>Ask in English or Malayalam. Answers are retrieved from the current knowledge base; if no relevant record is found, the assistant will say so.</p>
+    <div class="language-picker"><label for="languageSelect">Response language</label><select id="languageSelect"><option value="auto">Auto-detect</option><option value="en">English</option><option value="ml">മലയാളം</option></select></div>
+    <div class="chat-note"><strong>✦ Source-aware RAG</strong><span>Responses are grounded in indexed college FAQs, notices and uploaded documents.</span></div>
+  </div>
+  <div class="chat-panel">
+    <div class="chat-panel-header"><div class="bot-icon">✦</div><div><strong>CampusMate assistant</strong><small><span class="status-dot"></span> Knowledge base connected</small></div><button id="clearChat" class="icon-button" title="Clear conversation" aria-label="Clear conversation">↺</button></div>
+    <div id="chatMessages" class="chat-messages" aria-live="polite">
+      <div class="message assistant"><div class="message-avatar">✦</div><div class="message-body"><p>Hi! I’m CampusMate. Ask me about courses, notices, study materials or campus information.</p><small>നമസ്കാരം! കോളേജ് വിവരങ്ങൾ ചോദിക്കാം.</small></div></div>
+    </div>
+    <div class="suggestions"><button class="suggestion">Where can I find study materials?</button><button class="suggestion">പരീക്ഷാ തീയതികൾ എവിടെ ലഭിക്കും?</button><button class="suggestion">Which technologies power this project?</button></div>
+    <form id="chatForm" class="chat-form">
+      <textarea id="questionInput" rows="1" maxlength="1000" placeholder="Ask a question… / ചോദ്യം ചോദിക്കൂ…" required></textarea>
+      <button id="sendButton" class="send-button" type="submit" aria-label="Send message">↑</button>
+      <div class="input-hint">Enter to send · Shift + Enter for a new line</div>
+    </form>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/chat.js') }}"></script>{% endblock %}
