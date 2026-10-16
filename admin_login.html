@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Admin sign in{% endblock %}
+{% block content %}
+<section class="login-wrap"><div class="login-card"><div class="bot-icon large">✦</div><div class="eyebrow">AUTHORIZED STAFF ONLY</div><h1>Admin sign in</h1><p>Manage college FAQs, notices and study documents.</p>
+<form method="post" class="stack-form"><label>Username<input name="username" autocomplete="username" required maxlength="100"></label><label>Password<input type="password" name="password" autocomplete="current-password" required maxlength="200"></label><button class="btn btn-primary full-width" type="submit">Sign in securely →</button></form>
+<div class="security-note">For local demo only, the default account is <code>admin</code> / <code>ChangeMe123!</code>. Change it before deployment.</div></div></section>
+{% endblock %}

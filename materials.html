@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Study materials{% endblock %}
+{% block content %}
+<section class="page-heading"><div class="eyebrow">YOUR LEARNING LIBRARY</div><h1>Study materials</h1><p>Browse resources uploaded by an administrator. Only use official materials approved by your college.</p></section>
+<div class="materials-grid">
+{% for item in materials %}
+  <article class="material-card"><div class="pdf-icon">PDF</div><div class="material-meta">{{ item["subject"] }} · {{ item["uploaded_at"][:10] }}</div><h3>{{ item["title"] }}</h3><p>{{ item["filename"] }}</p><a class="btn btn-secondary btn-small" href="{{ url_for('uploaded_file', filename=item['filename']) }}">Download resource ↓</a></article>
+{% else %}
+  <div class="empty-library"><div class="empty-illustration">▤</div><h2>Your library starts here</h2><p>No materials have been uploaded yet. An administrator can add PDFs, TXT files or Markdown notes from the admin dashboard.</p><a class="btn btn-primary" href="{{ url_for('admin_login') }}">Admin sign in</a></div>
+{% endfor %}
+</div>
+{% endblock %}

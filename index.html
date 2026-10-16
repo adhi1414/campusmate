@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Your campus, one question away{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="pulse"></span> YOUR SMART CAMPUS COMPANION</div>
+    <h1>College answers.<br><span>Without the search.</span></h1>
+    <p class="hero-lead">Find course information, study materials, notices and campus updates in one simple place — in English or മലയാളം.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{{ url_for('chat_page') }}">Ask CampusMate <span>↗</span></a>
+      <a class="btn btn-secondary" href="{{ url_for('materials_page') }}">Explore materials</a>
+    </div>
+    <div class="hero-proof"><span class="avatar-stack"><i>A</i><i>ക</i><i>AI</i></span><span>Made for students. Powered by your college knowledge.</span></div>
+  </div>
+  <div class="hero-visual">
+    <div class="orb orb-one"></div><div class="orb orb-two"></div>
+    <div class="chat-preview">
+      <div class="preview-top"><span class="bot-icon">✦</span><div><strong>CampusMate AI</strong><small><span class="status-dot"></span> Ready to help</small></div><span class="more">•••</span></div>
+      <div class="preview-date">TODAY · CAMPUS HELP</div>
+      <div class="bubble user-bubble">Where can I find BCA study materials?</div>
+      <div class="bubble bot-bubble"><span class="mini-spark">✦</span><div>Open the Study Materials page to browse available notes and documents. Your college admin can add verified PDFs here.<div class="source-chip">↳ Source: College knowledge base</div></div></div>
+      <div class="preview-input">Ask anything about your college… <span>↑</span></div>
+    </div>
+    <div class="floating-card floating-top"><span class="float-icon purple">文</span><div><strong>Two languages</strong><small>English + Malayalam</small></div></div>
+    <div class="floating-card floating-bottom"><span class="float-icon green">✓</span><div><strong>Source-aware answers</strong><small>Grounded in uploaded records</small></div></div>
+  </div>
+</section>
+
+<section class="stats-row">
+  <div><strong>01</strong><span>Ask in natural language</span></div>
+  <div><strong>02</strong><span>Retrieve college information</span></div>
+  <div><strong>03</strong><span>Get relevant source references</span></div>
+  <div><strong>04</strong><span>Available in two languages</span></div>
+</section>
+
+<section class="section-block">
+  <div class="section-heading"><div><div class="eyebrow">ONE PLACE FOR CAMPUS LIFE</div><h2>Less searching. More learning.</h2></div><a class="text-link" href="{{ url_for('chat_page') }}">Try the assistant ↗</a></div>
+  <div class="feature-grid">
+    <article class="feature-card"><span class="feature-icon blue">✦</span><h3>AI campus chat</h3><p>Ask about courses, departments, exams and college services in everyday language.</p><a href="{{ url_for('chat_page') }}">Start a conversation ↗</a></article>
+    <article class="feature-card"><span class="feature-icon violet">▤</span><h3>Study library</h3><p>Browse PDFs and text resources added by an authorized administrator.</p><a href="{{ url_for('materials_page') }}">Browse resources ↗</a></article>
+    <article class="feature-card"><span class="feature-icon mint">◷</span><h3>Notices & updates</h3><p>See announcements published in this project. Always verify dates against official notices.</p><a href="#notices">View latest notices ↗</a></article>
+  </div>
+</section>
+
+<section class="notice-section" id="notices">
+  <div class="section-heading"><div><div class="eyebrow">CAMPUS BULLETIN</div><h2>Latest notices</h2></div><span class="muted">Demo records may be placeholders</span></div>
+  <div class="notice-list">
+    {% for notice in notices %}
+    <article class="notice-item"><div class="notice-date">{{ notice["published_on"] }}</div><div class="notice-content"><h3>{{ notice["title"] }}</h3><p>{{ notice["body"] }}</p><small>{{ notice["source"] }}</small></div><span class="notice-arrow">↗</span></article>
+    {% else %}<p class="empty-state">No notices have been published yet.</p>{% endfor %}
+  </div>
+</section>
+{% endblock %}
