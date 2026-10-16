@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f9fc">
+  <title>{% block title %}CampusMate AI{% endblock %} · CampusMate</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="topline"></div>
+  <header class="site-header">
+    <a class="brand" href="{{ url_for('index') }}" aria-label="CampusMate home">
+      <span class="brand-mark">C<span>+</span></span>
+      <span>CampusMate <small>AI COLLEGE ASSISTANT</small></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('chat_page') }}">Ask AI</a>
+      <a href="{{ url_for('materials_page') }}">Study materials</a>
+      <a href="{{ url_for('admin_dashboard') if session.get('admin_id') else url_for('admin_login') }}">Admin</a>
+    </nav>
+  </header>
+  <main class="page-shell">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-stack">
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="footer">
+    <div><strong>CampusMate AI</strong><span> · Built for learning, designed for campus life.</span></div>
+    <span>Demo project · Verify official information with your college</span>
+  </footer>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
